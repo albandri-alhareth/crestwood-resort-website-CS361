@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Search - Azure Resort</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">Azure Resort</div>
+
+    <button class="menu-toggle" aria-label="Open menu">☰</button>
+
+    <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="login.html">Register / Login</a></li>
+        <li><a href="room.html" class="active">Room Search</a></li>
+        <li><a href="booking-history.html">Booking History</a></li>
+    </ul>
+</header>
+
+<div class="container">
+    <div class="content-box rooms-wrapper">
+        <span class="eyebrow">Find Your Room</span>
+        <h2>Room Search</h2>
+        <p class="section-text">Search for available rooms based on your booking needs.</p>
+
+        <form id="searchForm" novalidate>
+            <div class="search-grid">
+                <div class="input-group">
+                    <label for="checkin">Check-in Date</label>
+                    <input type="text" id="checkin" placeholder="mm/dd/yyyy">
+                </div>
+
+                <div class="input-group">
+                    <label for="checkout">Check-out Date</label>
+                    <input type="text" id="checkout" placeholder="mm/dd/yyyy">
+                </div>
+
+                <div class="input-group">
+                    <label for="guests">Guests</label>
+                    <select id="guests">
+                        <option value="">Select guests</option>
+                        <option>1 Guest</option>
+                        <option>2 Guests</option>
+                        <option>3 Guests</option>
+                        <option>4 Guests</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="roomType">Room Type</label>
+                    <select id="roomType">
+                        <option value="">Select room type</option>
+                        <option>Standard Room</option>
+                        <option>Deluxe Room</option>
+                        <option>Suite</option>
+                    </select>
+                </div>
+            </div>
+
+            <button type="submit" class="btn full-btn">Search Rooms</button>
+        </form>
+
+        <div id="searchMessage" class="message-box" aria-live="polite"></div>
+
+        <div id="roomsList" class="rooms-grid"></div>
+    </div>
+</div>
+
+<footer>
+    © 2026 Azure Resort
+</footer>
+
+<script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+    });
+
+    const rooms = [
+        { id: "101", type: "Standard Room", status: "Available", price: "$300", beds: "2 Beds", wifi: "Free WiFi" },
+        { id: "102", type: "Deluxe Room", status: "Booked", price: "$450", beds: "3 Beds", wifi: "Free WiFi" },
+        { id: "103", type: "Suite", status: "Available", price: "$600", beds: "King Bed", wifi: "Premium WiFi" }
+    ];
+
+    function displayRooms() {
+        const roomsList = document.getElementById("roomsList");
+        roomsList.innerHTML = "";
+
+        rooms.forEach(room => {
+            const div = document.createElement("div");
+            div.classList.add("room-card");
+
+            div.innerHTML = `
+                <h3>Room #${room.id}</h3>
+                <p><strong>Type:</strong> ${room.type}</p>
+                <p><strong>Price:</strong> ${room.price}</p>
+                <p><strong>Beds:</strong> ${room.beds}</p>
+                <p><strong>Internet:</strong> ${room.wifi}</p>
+                <p class="status ${room.status === "Available" ? "available" : "booked"}">${room.status}</p>
+                <a href="room-details.html" class="btn room-btn">View Details</a>
+            `;
+
+            roomsList.appendChild(div);
+        });
+    }
+
+    displayRooms();
+
+    document.getElementById("searchForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const checkin = document.getElementById("checkin").value.trim();
+        const checkout = document.getElementById("checkout").value.trim();
+        const guests = document.getElementById("guests").value;
+        const roomType = document.getElementById("roomType").value;
+        const messageBox = document.getElementById("searchMessage");
+
+        let errors = [];
+
+        if (checkin === "") errors.push("Check-in date is required.");
+        if (checkout === "") errors.push("Check-out date is required.");
+        if (guests === "") errors.push("Please select the number of guests.");
+        if (roomType === "") errors.push("Please select a room type.");
+
+        if (errors.length > 0) {
+            alert(errors.join("\n"));
+            messageBox.className = "message-box error";
+            messageBox.innerHTML = errors.join("<br>");
+            return;
+        }
+
+        messageBox.className = "message-box success";
+        messageBox.textContent = "Rooms displayed successfully.";
+    });
+</script>
+
+</body>
+</html>

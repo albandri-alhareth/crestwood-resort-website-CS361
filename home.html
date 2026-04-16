@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Azure Resort</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">Azure Resort</div>
+
+    <button class="menu-toggle" aria-label="Open menu">☰</button>
+
+    <ul class="nav-links">
+        <li><a href="home.html" class="active">Home</a></li>
+        <li><a href="login.html">Register / Login</a></li>
+        <li><a href="room.html">Room Search</a></li>
+        <li><a href="booking-history.html">Booking History</a></li>
+    </ul>
+</header>
+
+<div class="container">
+
+    <section class="hero-box content-box">
+        <span class="eyebrow">Classic Luxury Escape</span>
+        <h1>Experience Timeless Luxury</h1>
+        <p>
+            Welcome to Azure Resort, your perfect destination for comfort, relaxation,
+            and unforgettable hotel booking experiences.
+        </p>
+
+        <div class="hero-actions">
+            <a href="room.html" class="btn">Search Rooms</a>
+            <a href="login.html" class="btn btn-outline">Register / Login</a>
+        </div>
+    </section>
+
+    <section class="content-box intro-box">
+        <h2>About Our Resort</h2>
+        <p>
+            Azure Resort offers luxurious rooms, premium facilities, and excellent services
+            for guests who are looking for elegance and relaxation.
+        </p>
+    </section>
+
+    <section class="cards">
+        <a href="room-details.html" class="card">
+            <img src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg" alt="Luxury room">
+            <div class="card-body">
+                <h3>Luxury Rooms</h3>
+                <p>Comfortable rooms with beautiful interiors and a peaceful atmosphere.</p>
+            </div>
+        </a>
+
+        <div class="card">
+            <img src="https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg" alt="Dining area">
+            <div class="card-body">
+                <h3>Fine Dining</h3>
+                <p>Enjoy delicious meals and a refined dining experience during your stay.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="https://images.pexels.com/photos/3757942/pexels-photo-3757942.jpeg" alt="Spa">
+            <div class="card-body">
+                <h3>Spa & Wellness</h3>
+                <p>Relax and refresh with our premium spa and wellness services.</p>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    © 2026 Azure Resort | All Rights Reserved
+</footer>
+
+<script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+    });
+</script>
+
+</body>
+</html>

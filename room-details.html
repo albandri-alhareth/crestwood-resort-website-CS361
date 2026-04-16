@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Details - Azure Resort</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">Azure Resort</div>
+
+    <button class="menu-toggle" aria-label="Open menu">☰</button>
+
+    <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="login.html">Register / Login</a></li>
+        <li><a href="room.html">Room Search</a></li>
+        <li><a href="booking-history.html">Booking History</a></li>
+    </ul>
+</header>
+
+<div class="container">
+    <section class="content-box details-box">
+        <span class="eyebrow">Room Information</span>
+        <h2>Deluxe Room Details</h2>
+
+        <img class="details-image" src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg" alt="Room Details">
+
+        <div class="details-content">
+            <p><strong>Room Type:</strong> Deluxe Room</p>
+            <p><strong>Price per Night:</strong> $450</p>
+            <p><strong>Beds:</strong> 2 Beds</p>
+            <p><strong>Internet:</strong> Free WiFi</p>
+            <p><strong>Description:</strong> A spacious and elegant room with modern furniture, a relaxing atmosphere, and beautiful resort views.</p>
+
+            <h3>Facilities</h3>
+            <ul class="details-list">
+                <li>Air Conditioning</li>
+                <li>Private Bathroom</li>
+                <li>Flat Screen TV</li>
+                <li>Mini Bar</li>
+                <li>Room Service</li>
+            </ul>
+
+            <a href="booking-history.html" class="btn">Book Now</a>
+        </div>
+    </section>
+</div>
+
+<footer>
+    © 2026 Azure Resort
+</footer>
+
+<script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+    });
+</script>
+
+</body>
+</html>

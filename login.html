@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register / Login - Azure Resort</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="logo">Azure Resort</div>
+
+    <button class="menu-toggle" aria-label="Open menu">☰</button>
+
+    <ul class="nav-links">
+        <li><a href="home.html">Home</a></li>
+        <li><a href="login.html" class="active">Register / Login</a></li>
+        <li><a href="room.html">Room Search</a></li>
+        <li><a href="booking-history.html">Booking History</a></li>
+    </ul>
+</header>
+
+<div class="container">
+    <div class="content-box form-box">
+        <span class="eyebrow">User Access</span>
+        <h2>Register / Login</h2>
+        <p class="section-text">Create a new account or log in to continue.</p>
+
+        <div class="form-grid">
+            <div class="mini-form-box">
+                <h3>Create Account</h3>
+                <form id="registerForm" novalidate>
+                    <div class="input-group">
+                        <label for="regName">Full Name</label>
+                        <input type="text" id="regName" placeholder="Enter your full name">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="regEmail">Email</label>
+                        <input type="email" id="regEmail" placeholder="Enter your email">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="regPassword">Password</label>
+                        <input type="password" id="regPassword" placeholder="Enter your password">
+                    </div>
+
+                    <button type="submit" class="btn full-btn">Register</button>
+                </form>
+                <div id="registerMessage" class="message-box" aria-live="polite"></div>
+            </div>
+
+            <div class="mini-form-box">
+                <h3>Login</h3>
+                <form id="loginForm" novalidate>
+                    <div class="input-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" placeholder="Enter your email">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" placeholder="Enter your password">
+                    </div>
+
+                    <button type="submit" class="btn full-btn">Login</button>
+                </form>
+                <div id="loginMessage" class="message-box" aria-live="polite"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    © 2026 Azure Resort
+</footer>
+
+<script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+    });
+
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById("regName").value.trim();
+        const email = document.getElementById("regEmail").value.trim();
+        const password = document.getElementById("regPassword").value.trim();
+        const messageBox = document.getElementById("registerMessage");
+
+        let errors = [];
+
+        if (name === "") errors.push("Full name is required.");
+        if (email === "" || !email.includes("@")) errors.push("Valid email is required.");
+        if (password.length < 6) errors.push("Password must be at least 6 characters.");
+
+        if (errors.length > 0) {
+            alert(errors.join("\n"));
+            messageBox.className = "message-box error";
+            messageBox.innerHTML = errors.join("<br>");
+            return;
+        }
+
+        messageBox.className = "message-box success";
+        messageBox.textContent = "Registration successful.";
+        this.reset();
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value.trim();
+        const messageBox = document.getElementById("loginMessage");
+
+        let errors = [];
+
+        if (email === "" || !email.includes("@")) errors.push("Valid email is required.");
+        if (password.length < 6) errors.push("Password must be at least 6 characters.");
+
+        if (errors.length > 0) {
+            alert(errors.join("\n"));
+            messageBox.className = "message-box error";
+            messageBox.innerHTML = errors.join("<br>");
+            return;
+        }
+
+        messageBox.className = "message-box success";
+        messageBox.textContent = "Login successful. Redirecting...";
+
+        setTimeout(() => {
+            window.location.href = "room.html";
+        }, 1000);
+    });
+</script>
+
+</body>
+</html>
